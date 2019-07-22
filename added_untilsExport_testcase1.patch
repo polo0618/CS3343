@@ -1,0 +1,343 @@
+Index: fsfbs-source/src/test/Test_UtilExport.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- fsfbs-source/src/test/Test_UtilExport.java	(revision 6dc8cc5550c9bf2bf5eef5226d233a940d6c8c00)
++++ fsfbs-source/src/test/Test_UtilExport.java	(date 1543048708000)
+@@ -1,22 +1,55 @@
+ package test;
+-
+ import static org.junit.jupiter.api.Assertions.*;
+ 
++import Fsfbs.UtilsExport;
+ import org.junit.jupiter.api.Test;
+ 
++import java.io.*;
++
+ class Test_UtilExport {
+ 
+-	@Test
+-	public void testUtilWrite() {
+-		/*
+-	    YourUtil.writeFile(path, data); //whatever you have
++    /*
++YourUtil.writeFile(path, data); //whatever you have
+ 
+-	    File shouldExist = new File(path);
+-	    assertTrue(file.exists());
+-	    // now read the file and assert the data in it is correct
+-		*/
+-	
++File shouldExist = new File(path);
++assertTrue(file.exists());
++// now read the file and assert the data in it is correct
++
++*/
++//        File tmpDir = new File("/var/tmp");
++//        boolean exists = tmpDir.exists();
++
++	//statement coverage
++	@Test
++	public void testUtilWrite_1() {
++	    String[] s = new String[5];
++	    for (int i =0; i<5; i++){
++            s[i] = "abcd";
++        }
++        UtilsExport.printToFile("/Users/abcd.txt",s);
++	    //logic check if file contains s
++        boolean result = true;
++        BufferedReader reader;
++        try {
++            reader = new BufferedReader(new FileReader("/Users/abcd.txt"));
++            String line = reader.readLine();
++            int i=0;
++            while(line != null){
++                if(!line.equals(s[i])){
++                    result = false;
++                    break;
++                }
++            }
++        } catch (FileNotFoundException e){
++            result = false;
++        } catch (IOException e){
++            result = false;
++        }
++        //return boolean true / f
++        assertEquals(true, result);
++
+ 	}
+ 	
+ 
++
+ }
+Index: fsfbs-source/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- fsfbs-source/.idea/workspace.xml	(revision 6dc8cc5550c9bf2bf5eef5226d233a940d6c8c00)
++++ fsfbs-source/.idea/workspace.xml	(date 1543048676000)
+@@ -1,9 +1,9 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="2dc3fec1-77f7-4808-b244-629f90aef580" name="Default Changelist" comment="Added abstract class Facilities and related subclasses including badmintonCourt, TableTennisCourt and ActivityRoom.">
+-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Fsfbs/UtilsExport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Fsfbs/UtilsExport.java" afterDir="false" />
++    <list default="true" id="2dc3fec1-77f7-4808-b244-629f90aef580" name="Default Changelist" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/test/Test_UtilExport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Test_UtilExport.java" afterDir="false" />
+     </list>
+     <ignored path="$PROJECT_DIR$/bin/" />
+     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+@@ -63,30 +63,30 @@
+       </usages-collector>
+       <usages-collector id="statistics.file.extensions.open">
+         <counts>
+-          <entry key="java" value="20" />
++          <entry key="java" value="24" />
+           <entry key="xml" value="1" />
+         </counts>
+       </usages-collector>
+       <usages-collector id="statistics.file.types.open">
+         <counts>
+-          <entry key="JAVA" value="20" />
++          <entry key="JAVA" value="24" />
+           <entry key="XML" value="1" />
+         </counts>
+       </usages-collector>
+       <usages-collector id="statistics.file.extensions.edit">
+         <counts>
+-          <entry key="java" value="8" />
++          <entry key="java" value="784" />
+         </counts>
+       </usages-collector>
+       <usages-collector id="statistics.file.types.edit">
+         <counts>
+-          <entry key="JAVA" value="8" />
++          <entry key="JAVA" value="784" />
+         </counts>
+       </usages-collector>
+     </session>
+   </component>
+   <component name="FileEditorManager">
+-    <splitter split-orientation="horizontal" split-proportion="0.51502144">
++    <splitter split-orientation="horizontal" split-proportion="0.40271816">
+       <split-first>
+         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+           <file pinned="false" current-in-tab="false">
+@@ -113,7 +113,7 @@
+           <file pinned="false" current-in-tab="false">
+             <entry file="file://$PROJECT_DIR$/src/Fsfbs/UtilTime.java">
+               <provider selected="true" editor-type-id="text-editor">
+-                <state relative-caret-position="264">
++                <state relative-caret-position="193">
+                   <caret line="17" column="35" lean-forward="true" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+                 </state>
+               </provider>
+@@ -122,8 +122,8 @@
+           <file pinned="false" current-in-tab="true">
+             <entry file="file://$PROJECT_DIR$/src/Fsfbs/UtilsExport.java">
+               <provider selected="true" editor-type-id="text-editor">
+-                <state relative-caret-position="72">
+-                  <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
++                <state relative-caret-position="57">
++                  <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+                 </state>
+               </provider>
+             </entry>
+@@ -135,8 +135,11 @@
+           <file pinned="false" current-in-tab="true">
+             <entry file="file://$PROJECT_DIR$/src/test/Test_UtilExport.java">
+               <provider selected="true" editor-type-id="text-editor">
+-                <state relative-caret-position="96">
+-                  <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
++                <state relative-caret-position="651">
++                  <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
++                  <folding>
++                    <element signature="imports" expanded="true" />
++                  </folding>
+                 </state>
+               </provider>
+             </entry>
+@@ -144,7 +147,7 @@
+           <file pinned="false" current-in-tab="false">
+             <entry file="file://$PROJECT_DIR$/src/test/Test_UtilTime.java">
+               <provider selected="true" editor-type-id="text-editor">
+-                <state relative-caret-position="408">
++                <state relative-caret-position="342">
+                   <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+                 </state>
+               </provider>
+@@ -181,6 +184,7 @@
+         <option value="$PROJECT_DIR$/src/Fsfbs/Main.java" />
+         <option value="$PROJECT_DIR$/src/Fsfbs/Facilities.java" />
+         <option value="$PROJECT_DIR$/src/Fsfbs/UtilsExport.java" />
++        <option value="$PROJECT_DIR$/src/test/Test_UtilExport.java" />
+       </list>
+     </option>
+   </component>
+@@ -430,7 +434,7 @@
+     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/wongyuhong/Documents/GitHub/fsfbs/fsfbs-source/src/Fsfbs/Main.java" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+     <property name="aspect.path.notification.shown" value="true" />
+-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543037654979" />
++    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543048288480" />
+     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+@@ -453,12 +457,9 @@
+           <option name="mySupportsDeletion" value="false" />
+           <option name="myCanBeAbsent" value="false" />
+           <option name="myId" value="UPDATED" />
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Config/config.properties</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Fsfbs/Controller.java</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Fsfbs/Facility.java</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Fsfbs/Main.java</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Fsfbs/SportCentre.java</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Fsfbs/UtilsExport.java</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/caches/identified-project-coordinates.json</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/segments.gen</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Fsfbs/User.java</PATH>
+           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/test/Test_UtilExport.java</PATH>
+         </FILE-GROUP>
+         <FILE-GROUP>
+@@ -467,9 +468,16 @@
+           <option name="mySupportsDeletion" value="false" />
+           <option name="myCanBeAbsent" value="false" />
+           <option name="myId" value="CREATED" />
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Data/TimeSchedule/N1.txt</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Data/TimeSchedule/N2.txt</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/test/Test_UtilValidation.java</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_1.fdt</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_1.fdx</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_1.fnm</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_1.frq</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_1.nrm</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_1.prx</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_1.tii</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_1.tis</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/segments_2</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/test/Test_validation.java</PATH>
+         </FILE-GROUP>
+         <FILE-GROUP>
+           <option name="myUpdateName" value="Deleted" />
+@@ -477,6 +485,15 @@
+           <option name="mySupportsDeletion" value="false" />
+           <option name="myCanBeAbsent" value="true" />
+           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_0.fdt</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_0.fdx</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_0.fnm</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_0.frq</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_0.nrm</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_0.prx</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_0.tii</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_0.tis</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/segments_1</PATH>
+         </FILE-GROUP>
+         <FILE-GROUP>
+           <option name="myUpdateName" value="Restored" />
+@@ -607,7 +624,7 @@
+       <workItem from="1542424783295" duration="174000" />
+       <workItem from="1542429112305" duration="40000" />
+       <workItem from="1543036492387" duration="87000" />
+-      <workItem from="1543036620328" duration="1385000" />
++      <workItem from="1543036620328" duration="6515000" />
+     </task>
+     <task id="LOCAL-00001" summary="Added abstract class Facilities and related subclasses including badmintonCourt, TableTennisCourt and ActivityRoom.">
+       <created>1541942194038</created>
+@@ -623,11 +640,18 @@
+       <option name="project" value="LOCAL" />
+       <updated>1541997116323</updated>
+     </task>
+-    <option name="localTasksCounter" value="3" />
++    <task id="LOCAL-00003" summary="Added abstract class Facilities and related subclasses including badmintonCourt, TableTennisCourt and ActivityRoom.">
++      <created>1543038021018</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1543038021018</updated>
++    </task>
++    <option name="localTasksCounter" value="4" />
+     <servers />
+   </component>
+   <component name="TimeTrackingManager">
+-    <option name="totallyTimeSpent" value="12002000" />
++    <option name="totallyTimeSpent" value="17132000" />
+   </component>
+   <component name="TodoView">
+     <todo-panel id="selected-file">
+@@ -894,31 +918,62 @@
+         </state>
+       </provider>
+     </entry>
++    <entry file="file://$PROJECT_DIR$/src/Fsfbs/UtilTime.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="193">
++          <caret line="17" column="35" lean-forward="true" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
++        </state>
++      </provider>
++    </entry>
+     <entry file="file://$PROJECT_DIR$/src/test/Test_UtilTime.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="408">
++        <state relative-caret-position="342">
+           <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/Fsfbs/UtilTime.java">
++    <entry file="file://$PROJECT_DIR$/src/Fsfbs/Controller.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="264">
+-          <caret line="17" column="35" lean-forward="true" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
++        <state relative-caret-position="2256">
++          <caret line="149" column="66" selection-start-line="149" selection-start-column="66" selection-end-line="149" selection-end-column="66" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/test/Test_UtilExport.java">
++    <entry file="file://$PROJECT_DIR$/src/Fsfbs/ExFullBooking.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="96">
+-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
++        <state relative-caret-position="48">
++          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/Fsfbs/ExUserIdNotExist.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="48">
++          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/Fsfbs/ExSportCentreNotExist.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="48">
++          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+         </state>
+       </provider>
+     </entry>
+     <entry file="file://$PROJECT_DIR$/src/Fsfbs/UtilsExport.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="72">
+-          <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
++        <state relative-caret-position="57">
++          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/test/Test_UtilExport.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="651">
++          <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
